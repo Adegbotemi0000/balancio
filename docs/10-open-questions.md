@@ -4,9 +4,9 @@ Nothing below blocks starting Phase 0, but each should get an answer before the 
 build that depends on it starts.
 
 ## Product & branding
-- **Product name** — "Quelron Ledger" is a working title only, not chosen. Needs a real
-  name before the marketing site/signup flow can be built for real (a placeholder name
-  baked into copy/URLs now just means redoing it later).
+- ~~Product name~~ — **Decided: Balancio** (full form "Balancio by Quelron"). Checked
+  against web search at decision time with no colliding product/company found; domain
+  availability not yet separately verified.
 - **Exact brand hex codes** — the four-accent palette (Electric Blue, Deep Emerald, Luxury
   Gold, Safety Orange on Jet Black/Carbon Gray/Silver/White) is approximated from an
   existing guide image. Worth nailing down exact values (and dark-mode-safe variants)

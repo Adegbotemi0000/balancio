@@ -15,12 +15,13 @@
 
 ## Phase 1 — Core accounting MVP
 
-Ported conceptually from the founder's proven modules (not shared code): Customers,
-Suppliers, Products, Categories, Sales & Invoicing, Expenses, Purchases, Inventory + stock
-movements, Cash & Bank accounts, Chart of Accounts / Journals / General Ledger / Trial
-Balance with real auto-posting, generic Tax module (see `docs/08-compliance-and-tax.md`),
-Dashboard, basic Reports, role-based access + audit trail, Document management, Trash/
-soft-delete pattern.
+Ported directly from QRS (`C:\Users\xc\QRS`, left untouched — see CLAUDE.md), one module at
+a time, adding `tenant_id` scoping as each is ported: Customers, Suppliers, Products,
+Categories, Sales & Invoicing, Expenses, Purchases, Inventory + stock movements, Cash &
+Bank accounts, Chart of Accounts / Journals / General Ledger / Trial Balance with real
+auto-posting, generic Tax module (see `docs/08-compliance-and-tax.md`), Dashboard, basic
+Reports, role-based access + audit trail, Document management, Trash/soft-delete pattern.
+Start with Sales & Invoicing to prove the porting pattern end to end before doing the rest.
 
 ## Phase 2 — Everything else from the module list
 

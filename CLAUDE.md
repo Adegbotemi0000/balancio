@@ -1,25 +1,32 @@
-# Quelron Ledger (working name)
+# Balancio
 
 ## What this is
 
-A cloud-based, multi-tenant accounting and bookkeeping SaaS platform, built and owned by
-Quelron — the founder's personal brand, not a company product line. Any business, in any
-country, can sign up, set up their company profile (country, base currency), subscribe to
-a plan, and immediately start managing sales, purchases, expenses, payroll, inventory, and
-full double-entry bookkeeping.
+**Balancio by Quelron** — a cloud-based, multi-tenant accounting and bookkeeping SaaS
+platform, built and owned by Quelron (the founder's personal brand, not a company product
+line). Any business, in any country, can sign up, set up their company profile (country,
+base currency), subscribe to a plan, and immediately start managing sales, purchases,
+expenses, payroll, inventory, and full double-entry bookkeeping.
 
-This is a **separate, standalone project** — genuinely independent from every other
-finance/bookkeeping app already built under this account:
+(Product naming history: this repo was briefly scaffolded under the working title "Quelron
+Ledger" before the real name — Balancio — was chosen. If you see "Quelron Ledger" anywhere
+still, it's a stale reference left over from that and should be fixed.)
 
-- **Not** `xtreme-finance-system` (Xtreme Cr8tivity's internal single-tenant tool)
-- **Not** `xtreme-books` (Xtreme Cr8tivity's own separate multi-tenant SaaS play)
-- **Not** `QRS` (Quelron Group's own internal, personal/solo-run finance tool)
+This repo's relationship to the other finance/bookkeeping projects under this account:
 
-Nothing in this repo touches any of those three — no shared code, database, deployment,
-or branding. The *functional depth* of the accounting/bookkeeping domain (what a GL posting
-engine needs to do, what an audit trail needs to capture, how approvals should work) is
-common sense shared across any serious accounting product, not something copied from one
-codebase into another. Do not open or reference those other repos while working here.
+- **Not** `xtreme-finance-system` (Xtreme Cr8tivity's internal single-tenant tool) and
+  **not** `xtreme-books` (Xtreme Cr8tivity's own separate multi-tenant SaaS play) — fully
+  separate brand, codebase, database, deployment. Never open, reference, or touch either
+  of these while working on Balancio.
+- **`QRS`** (`C:\Users\xc\QRS`, a.k.a. "Quelron Finance" — Quelron Group's own internal,
+  personal/solo-run finance tool) is different: it's this project's **module reference
+  source**. QRS already has every accounting module this product needs (Sales, Expenses,
+  Purchases, Inventory, GL/Journals, Payroll, POS, Wallet, Fixed Assets, Production, and
+  so on — see its own `docs/02-modules.md`), built and live, just single-tenant. The plan
+  is to **port QRS's modules into this repo one at a time**, adding tenant-scoping
+  (`tenant_id` on every table/query) as each one is ported — not rebuild them from zero.
+  QRS itself is **never modified** for this — it stays exactly as it is, live, with the
+  founder's own real data. Copy its logic over; don't edit QRS in place.
 
 ## Who this is for and why it's different from the others
 
@@ -36,10 +43,10 @@ Key differences from the Nigeria-specific internal tools this founder has also b
 - **Public marketing site + self-service setup/signup/signin**, same commercial-SaaS shape
   as the sibling project, but under Quelron's own brand and identity, not Xtreme Cr8tivity's.
 
-## Scope: same functional depth as the mature internal tool, generalized
+## Scope: same functional depth as QRS, ported and generalized
 
-Every module the founder's most mature internal accounting tool has, reimplemented fresh
-(not shared code) and generalized for any country/currency:
+Every module QRS (`C:\Users\xc\QRS`) has, ported over from there and generalized for any
+country/currency (not reimplemented from zero — see the QRS note above):
 
 Sales & invoicing, quotations, customers, expenses, purchases & suppliers, vendor credits,
 inventory & stock movements, production tracking, POS, wallet/internal balance tracking,
@@ -92,6 +99,6 @@ covered further in `docs/07-branding-design.md`.
 
 ## Decisions still needed from the founder
 
-See `docs/10-open-questions.md` for the full list — plan pricing/tiers, product name
-(currently just a working title), payment processor for global card billing, and how deep
-the "generic tax" model needs to go for the first launch markets.
+See `docs/10-open-questions.md` for the full list — plan pricing/tiers, payment processor
+for global card billing, and how deep the "generic tax" model needs to go for the first
+launch markets. (Product name is decided: Balancio.)

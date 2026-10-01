@@ -1,0 +1,269 @@
+/* Quelron design system — flat colors only, no gradients anywhere (see
+   docs/07-branding-design.md). Genuinely multi-color: four distinct accent
+   hues used as real signals (blue=primary, emerald=success, orange=warning,
+   gold=highlight), plus a red for errors/negative states so none of the
+   brand four gets overloaded to also mean "something's wrong". */
+:root {
+  --ink: #0a0a0a;        /* Jet Black */
+  --ink-soft: #6b6b6f;   /* Carbon Gray, lightened for secondary text */
+  --paper: #ffffff;       /* White */
+  --surface: #f4f4f5;     /* Silver-tinted page background */
+  --surface-raised: #ffffff;
+  --border: #e2e2e5;
+  --border-strong: #c7c7cc; /* Silver */
+
+  --blue: #0066ff;       /* Electric Blue — primary actions, links, brand */
+  --blue-soft: #e8f0ff;
+  --emerald: #00875a;    /* Deep Emerald — success/positive states */
+  --emerald-soft: #e3f5ee;
+  --gold: #c9a227;       /* Luxury Gold — highlights, premium moments */
+  --gold-soft: #faf3dc;
+  --orange: #ff6b00;     /* Safety Orange — warnings, pending/attention */
+  --orange-soft: #fff0e5;
+  --red: #e5484d;        /* Signal Red — errors, overdue, negative states */
+  --red-soft: #fdecec;
+
+  --radius: 12px;
+  --radius-sm: 8px;
+  --shadow: 0 1px 2px rgba(10, 10, 10, 0.04), 0 8px 24px rgba(10, 10, 10, 0.06);
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+}
+
+/* Dark mode — dashboard-heavy UI needs this as a first-class mode, not an
+   afterthought (docs/07-branding-design.md). Dark surfaces here read as
+   intentional (Jet Black / Carbon Gray), not as a missing light mode. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --ink: #f2f2f3;
+    --ink-soft: #a3a3a8;
+    --paper: #151517;
+    --surface: #0a0a0a;
+    --surface-raised: #1c1c1e;
+    --border: #2e2e31;
+    --border-strong: #3a3a3c;
+
+    --blue: #4d94ff;
+    --blue-soft: rgba(0, 102, 255, 0.16);
+    --emerald: #2fbf87;
+    --emerald-soft: rgba(0, 135, 90, 0.18);
+    --gold: #e0bd4d;
+    --gold-soft: rgba(201, 162, 39, 0.16);
+    --orange: #ff8c3d;
+    --orange-soft: rgba(255, 107, 0, 0.16);
+    --red: #ff6b70;
+    --red-soft: rgba(229, 72, 77, 0.16);
+
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 8px 24px rgba(0, 0, 0, 0.35);
+  }
+}
+:root[data-theme="dark"] {
+  --ink: #f2f2f3;
+  --ink-soft: #a3a3a8;
+  --paper: #151517;
+  --surface: #0a0a0a;
+  --surface-raised: #1c1c1e;
+  --border: #2e2e31;
+  --border-strong: #3a3a3c;
+
+  --blue: #4d94ff;
+  --blue-soft: rgba(0, 102, 255, 0.16);
+  --emerald: #2fbf87;
+  --emerald-soft: rgba(0, 135, 90, 0.18);
+  --gold: #e0bd4d;
+  --gold-soft: rgba(201, 162, 39, 0.16);
+  --orange: #ff8c3d;
+  --orange-soft: rgba(255, 107, 0, 0.16);
+  --red: #ff6b70;
+  --red-soft: rgba(229, 72, 77, 0.16);
+
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 8px 24px rgba(0, 0, 0, 0.35);
+}
+
+* { box-sizing: border-box; }
+html, body, #root { height: 100%; }
+body {
+  margin: 0;
+  background: var(--surface);
+  color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: var(--blue); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+h1, h2, h3 { margin: 0 0 var(--space-3); letter-spacing: -0.01em; }
+h1 { font-size: 28px; font-weight: 700; }
+h2 { font-size: 20px; font-weight: 600; }
+h3 { font-size: 16px; font-weight: 600; }
+
+.page { padding: var(--space-6); max-width: 1100px; margin: 0 auto; }
+
+/* Cards — flat surfaces, no glass/blur/gradient effects. */
+.card {
+  background: var(--surface-raised);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: var(--space-5);
+  box-shadow: var(--shadow);
+}
+
+.stat-grid { display: flex; flex-wrap: wrap; gap: var(--space-3); margin-bottom: var(--space-5); }
+.stat-card {
+  background: var(--surface-raised);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: var(--space-4);
+  min-width: 170px;
+  flex: 1 1 170px;
+  box-shadow: var(--shadow);
+}
+.stat-label { font-size: 12px; color: var(--ink-soft); margin-bottom: 4px; }
+.stat-value { font-size: 22px; font-weight: 700; }
+
+/* Buttons — flat fills, one hue per meaning, never a gradient. */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 16px;
+  min-height: 40px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-strong);
+  background: var(--surface-raised);
+  color: var(--ink);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.12s, border-color 0.12s, transform 0.08s;
+}
+.btn:hover { transform: translateY(-1px); }
+.btn:active { transform: translateY(0); }
+.btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+.btn-primary { background: var(--blue); border-color: var(--blue); color: #fff; }
+.btn-primary:hover { background: #0052cc; border-color: #0052cc; }
+
+.btn-success { background: var(--emerald); border-color: var(--emerald); color: #fff; }
+.btn-warning { background: var(--orange); border-color: var(--orange); color: #fff; }
+.btn-danger { background: var(--red); border-color: var(--red); color: #fff; }
+.btn-gold { background: var(--gold); border-color: var(--gold); color: #1a1400; }
+
+/* Semantic pills — the "genuinely multi-color" payoff: a status reads
+   instantly from its own hue, not a shade of one brand color. */
+.pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+}
+.pill-blue { background: var(--blue-soft); color: var(--blue); }
+.pill-emerald { background: var(--emerald-soft); color: var(--emerald); }
+.pill-gold { background: var(--gold-soft); color: var(--gold); }
+.pill-orange { background: var(--orange-soft); color: var(--orange); }
+.pill-red { background: var(--red-soft); color: var(--red); }
+.pill-gray { background: var(--surface); color: var(--ink-soft); border: 1px solid var(--border); }
+
+/* Forms */
+.field { margin-bottom: var(--space-4); }
+.field label { display: block; font-size: 13px; font-weight: 500; margin-bottom: 6px; color: var(--ink); }
+.field input, .field select, .field textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-strong);
+  background: var(--surface-raised);
+  color: var(--ink);
+  font-size: 14px;
+  font-family: inherit;
+}
+.field input:focus, .field select:focus, .field textarea:focus {
+  outline: none;
+  border-color: var(--blue);
+  box-shadow: 0 0 0 3px var(--blue-soft);
+}
+.field-hint { font-size: 12px; color: var(--ink-soft); margin-top: 4px; }
+
+.error-banner {
+  background: var(--red-soft);
+  color: var(--red);
+  border: 1px solid var(--red);
+  border-radius: var(--radius-sm);
+  padding: var(--space-3) var(--space-4);
+  font-size: 14px;
+  margin-bottom: var(--space-4);
+}
+.empty-state { color: var(--ink-soft); font-size: 14px; text-align: center; padding: var(--space-5); }
+
+/* App shell (authenticated area) */
+.app-shell { display: flex; min-height: 100vh; }
+.sidebar {
+  width: 240px;
+  flex-shrink: 0;
+  background: var(--ink);
+  color: var(--paper);
+  padding: var(--space-4);
+  display: flex;
+  flex-direction: column;
+}
+.sidebar-brand { font-weight: 700; font-size: 18px; margin-bottom: var(--space-5); }
+.sidebar-brand small { display: block; font-weight: 400; font-size: 12px; color: #9a9a9e; }
+.sidebar nav a {
+  display: block;
+  padding: 10px 12px;
+  border-radius: var(--radius-sm);
+  color: #d4d4d6;
+  font-size: 14px;
+  margin-bottom: 2px;
+}
+.sidebar nav a:hover, .sidebar nav a.active { background: rgba(255,255,255,0.08); color: #fff; text-decoration: none; }
+.main-area { flex: 1; min-width: 0; }
+
+/* Marketing site */
+.marketing-hero {
+  padding: 96px var(--space-6) 64px;
+  text-align: center;
+  background: var(--surface-raised);
+  border-bottom: 1px solid var(--border);
+}
+.marketing-hero h1 { font-size: 44px; max-width: 720px; margin: 0 auto var(--space-4); }
+.marketing-hero p { font-size: 18px; color: var(--ink-soft); max-width: 560px; margin: 0 auto var(--space-5); }
+.marketing-feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--space-4);
+  padding: var(--space-6);
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.marketing-feature-card {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: var(--space-4);
+  background: var(--surface-raised);
+}
+/* Each feature card gets one of the four accents as its top border, cycling
+   through — a small, deliberate multi-color touch across the grid rather
+   than one repeated brand color. */
+.marketing-feature-card:nth-child(4n+1) { border-top: 3px solid var(--blue); }
+.marketing-feature-card:nth-child(4n+2) { border-top: 3px solid var(--emerald); }
+.marketing-feature-card:nth-child(4n+3) { border-top: 3px solid var(--gold); }
+.marketing-feature-card:nth-child(4n+4) { border-top: 3px solid var(--orange); }
+
+.form-inline { display: flex; align-items: center; gap: var(--space-2); flex-wrap: wrap; }
+.muted { color: var(--ink-soft); }
+
+@media (max-width: 720px) {
+  .app-shell { flex-direction: column; }
+  .sidebar { width: 100%; }
+  .marketing-hero h1 { font-size: 30px; }
+}
