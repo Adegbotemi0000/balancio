@@ -5,6 +5,7 @@
 // local test data survives between sessions.
 require('dotenv').config();
 const EmbeddedPostgres = require('embedded-postgres').default;
+const fs = require('fs');
 const path = require('path');
 
 const pg = new EmbeddedPostgres({
@@ -17,7 +18,11 @@ const pg = new EmbeddedPostgres({
 
 async function main() {
   console.log('Starting local dev PostgreSQL on port 55440...');
-  await pg.initialise();
+  // initialise() runs initdb, which refuses to run again against a
+  // non-empty data directory -- skip it once a previous run has already
+  // initialized the cluster (marked by PG_VERSION existing).
+  const alreadyInitialized = fs.existsSync(path.join(__dirname, '..', '..', '.devdata', 'PG_VERSION'));
+  if (!alreadyInitialized) await pg.initialise();
   await pg.start();
   try {
     await pg.createDatabase('quelron_dev');

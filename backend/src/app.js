@@ -5,6 +5,9 @@ const helmet = require('helmet');
 const authRoutes = require('./modules/auth/routes');
 const tenantsRoutes = require('./modules/tenants/routes');
 const superadminRoutes = require('./modules/superadmin/routes');
+const customersRoutes = require('./modules/customers/routes');
+const accountsRoutes = require('./modules/accounts/routes');
+const salesRoutes = require('./modules/sales/routes');
 
 const app = express();
 
@@ -27,6 +30,9 @@ app.get('/api/health', (req, res) => res.json({ status: 'ok' }));
 app.use('/api/auth', authRoutes);
 app.use('/api/tenants', tenantsRoutes);
 app.use('/api/superadmin', superadminRoutes);
+app.use('/api/customers', customersRoutes);
+app.use('/api/accounts', accountsRoutes);
+app.use('/api/sales', salesRoutes);
 
 // Centralised error handler -- anything asyncHandler forwards, or any
 // synchronous throw, lands here instead of crashing the process or leaking a

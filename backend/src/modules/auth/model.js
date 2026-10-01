@@ -56,6 +56,14 @@ async function signup({ companyName, country, baseCurrency, industry, email, pas
       [tenant.id, planRows[0].id, trialEnds]
     );
 
+    // Every tenant needs somewhere for a payment to land -- QRS seeds this
+    // once at the database level since it's single-tenant; here it's done
+    // per-tenant at signup instead.
+    await client.query(
+      `INSERT INTO accounts (tenant_id, name, type) VALUES ($1, 'Cash', 'cash')`,
+      [tenant.id]
+    );
+
     await client.query('COMMIT');
     return { tenant, user };
   } catch (err) {
