@@ -27,6 +27,7 @@ export async function apiFetch(path, { method = 'GET', body, superAdmin = false 
   if (!res.ok) {
     const err = new Error(data.error || `Request failed (${res.status})`);
     err.status = res.status;
+    err.response = data;
     throw err;
   }
   return data;

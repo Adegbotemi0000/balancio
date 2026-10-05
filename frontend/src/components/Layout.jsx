@@ -1,9 +1,9 @@
 import { NavLink } from 'react-router-dom';
 import { useAuth } from '../AuthContext';
 
-// Phase 0 nav is minimal on purpose -- Dashboard + Settings only exist so
-// far; the full module list (Sales, Purchases, Inventory, GL, Payroll, ...)
-// gets its own nav sections as each is actually built in Phase 1/2.
+// Nav grows one module at a time as each is actually built (Sales is the
+// first, see CLAUDE.md's porting plan) -- not a full placeholder list for
+// modules that don't exist yet.
 export default function Layout({ children }) {
   const { user, tenant, logout } = useAuth();
 
@@ -16,6 +16,8 @@ export default function Layout({ children }) {
         </div>
         <nav>
           <NavLink to="/dashboard" className={({ isActive }) => (isActive ? 'active' : '')}>Dashboard</NavLink>
+          <NavLink to="/sales/invoices" className={({ isActive }) => (isActive ? 'active' : '')}>Invoices</NavLink>
+          <NavLink to="/sales/customers" className={({ isActive }) => (isActive ? 'active' : '')}>Customers</NavLink>
           <NavLink to="/settings" className={({ isActive }) => (isActive ? 'active' : '')}>Settings</NavLink>
         </nav>
         <div style={{ marginTop: 'auto', paddingTop: 16 }}>

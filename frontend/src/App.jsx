@@ -7,6 +7,10 @@ import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Dashboard from './pages/Dashboard';
 import Settings from './pages/Settings';
+import Customers from './pages/Customers';
+import Invoices from './pages/Invoices';
+import NewInvoice from './pages/NewInvoice';
+import InvoiceDetail from './pages/InvoiceDetail';
 import SuperAdminLogin from './pages/SuperAdminLogin';
 import SuperAdminDashboard from './pages/SuperAdminDashboard';
 
@@ -29,6 +33,10 @@ export default function App() {
       <Route path="/signup" element={<Signup />} />
       <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
       <Route path="/settings" element={<ProtectedRoute><Settings /></ProtectedRoute>} />
+      <Route path="/sales/customers" element={<ProtectedRoute><Customers /></ProtectedRoute>} />
+      <Route path="/sales/invoices" element={<ProtectedRoute><Invoices /></ProtectedRoute>} />
+      <Route path="/sales/invoices/new" element={<ProtectedRoute><NewInvoice /></ProtectedRoute>} />
+      <Route path="/sales/invoices/:id" element={<ProtectedRoute><InvoiceDetail /></ProtectedRoute>} />
       <Route path="/superadmin/login" element={<SuperAdminLogin />} />
       <Route path="/superadmin/tenants" element={<SuperAdminRoute><SuperAdminDashboard /></SuperAdminRoute>} />
       <Route path="*" element={<Navigate to="/" replace />} />
